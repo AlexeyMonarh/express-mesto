@@ -17,7 +17,7 @@ const getUser = (req, res) => {
       user._id === id
     );
     if (!user) {
-      return res.status(404).send('Нет пользователя с таким id')
+      return res.status(404).send({ message: 'Нет пользователя с таким id' })
     }
     res.send(user);
   })
