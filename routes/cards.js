@@ -1,13 +1,10 @@
 const router = require('express').Router();
-const path = require('path');
-const readJson = require('../utils/readJson');
+const controllers = require('../controllers/cards');
 
-router.get('/', (req, res) => {
-  readJson(path.join(__dirname, '..', 'data', 'cards.json'))
-    .then((cards) => {
-      res.send(cards);
-    })
-    .catch((err) => { res.status(500).send(err); });
-});
+router.get('/', controllers.getCards);
+router.post('/', controllers.postCard);
+router.delete('/:_id', controllers.deleteCard);
+router.put('/:_id/likes', controllers.likeCard);
+router.delete('/:_id/likes', controllers.dislikeCard);
 
 module.exports = router;
