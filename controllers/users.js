@@ -59,7 +59,7 @@ const patchUser = (req, res) => {
 
 const patchAva = (req, res) => {
   const { avatar } = req.body;
-  User.findByIdAndUpdate(req.user._id, { avatar })
+  User.findByIdAndUpdate(req.user._id, { avatar }, { runValidators: true, new: true })
     .orFail(() => {
       throw new Error('404');
     })
